@@ -97,7 +97,8 @@ app.event('app_mention', async ({ event, client, say }) => {
   }
 
   const resultLines = scored.map((item, i) => `*${i + 1}.* ${item.text}`).join('\n\n');
-  await say(`Here's something I found:\n\n${resultLines}`);
+  const header = scored.length === 1 ? "Here's something I found:" : `Here are the top ${scored.length} results I found:`;
+  await say(`${header}\n\n${resultLines}`);
 
   console.log(`[SlackSense] Responded with ${scored.length} match(es)`);
 });
